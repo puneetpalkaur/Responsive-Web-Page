@@ -1,7 +1,7 @@
 # Responsive-Web-Page
+---
 
-### Built using:
-
-### HTML 
-### CSS
-### Javascript
+## Built using: 
+- #### HTML  
+- #### CSS 
+- #### Javascript
