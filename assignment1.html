@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Jack O' Lanterns</title>
+    <link href="https://fonts.googleapis.com/css?family=Butcherman" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+        @keyframes grow {
+            0%{text-shadow: 3px 3px red;}
+            50%{text-shadow: 8px 8px red;}
+            100%{text-shadow: 3px 3px red;}
+        }
+      body{
+            background: black;
+        }
+
+        .header {
+            font-family: 'Butcherman', cursive;
+            text-align: center;
+            color: black;
+            text-shadow: 3px 3px red;
+            font-size: xx-large;
+            margin: 0;
+            background: radial-gradient(ellipse,orange,red);
+            animation-name: grow;
+            animation-duration: 2s;
+            animation-iteration-count:infinite;
+
+        }
+        a{
+            color: black;
+            text-decoration: none;
+        }
+        a:active{
+            color: black;
+        }
+        a:hover{
+            color: whitesmoke;
+        }
+        h1{
+            margin: 0;
+        }
+        .content{
+            width: 100%;
+        }
+        .about{
+            color:whitesmoke;
+            font-family: Cambria;
+            font-size: large;
+        }
+        .outer{
+            text-align: center;
+            padding-bottom: 5px;
+            display: inline-block;
+            margin: 25px;
+            box-shadow: 0 0 8px 0 orangered, 0 0 20px 0 orangered;
+        }
+        .container {
+            background-color: white;
+            width: 250px;
+            height: auto;
+            position: relative;
+            text-align: center;
+         }
+        .image {
+            width: 250px;
+            height: 300px;
+            display: block;
+        }
+        .overlay {
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            opacity: 0;
+            top: 0;
+            left:0;
+            right:0;
+            bottom:0;
+            transition: .5s ease;
+            background-color: black;
+        }
+        .container:hover .overlay {
+            opacity: 1;
+        }
+         .like {
+             background-color: transparent;
+             border: none;
+             color: whitesmoke;
+             float: left;
+             height: 30px;
+             width: 50px;
+             display: inline-block;
+         }
+         .like:hover{
+             color:deeppink;
+         }
+         .like:active{
+             color:red;
+         }
+         .view{
+             background-color: transparent;
+             border: none;
+             color: whitesmoke;
+             float: right;
+             height: 30px;
+             width: 50px;
+             display: inline-block;
+             text-align: right;
+             padding-right: 0;
+             margin-right: -28px;
+         }
+         .text {
+            color: whitesmoke;
+            font-size: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+        .about, .gallery{
+            box-shadow: 0 1px 8px 0 whitesmoke;
+            padding: 1px 1px 1px 1px;
+            text-align: center;
+            margin: auto;
+
+        }
+        .gallery{
+            overflow:auto;
+            margin: auto;
+            width:100%;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+
+        .options{
+            width: 190px;
+            height: auto;
+        }
+        .footer{
+            background: radial-gradient(ellipse,orange,red);
+            text-align: center;
+            font-family: 'Butcherman', cursive;
+            clear: both;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.9);
+        }
+
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 700px;
+        }
+
+
+        .modal-content {
+            animation-name: zoom;
+            animation-duration: 0.6s;
+        }
+
+        @keyframes zoom {
+            from {transform:scale(0)}
+            to {transform:scale(1)}
+        }
+
+        .close {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+
+        }
+        audio,source{
+            width: 100%;
+            background-color: black;
+            color: red;
+            display: none;
+        }
+    </style>
+    <script>
+        var count = [];
+        function colorme(id){
+           if(count.indexOf(id)=== -1)
+           {
+               document.getElementById(id).style.color="red";
+               count.push(id);
+           }
+           else
+           {
+               document.getElementById(id).style.color="white";
+               count.splice(count.indexOf(id), 1);
+           }
+
+        }
+
+        function viewMe(id){
+            var modal = document.getElementById('myModal');
+            var modalImg = document.getElementById("img01");
+            var img = document.getElementById(id);
+            modal.style.display = "block";
+            modalImg.src = img.src;
+
+        }
+
+        function closeMe(){
+            var mymodal = document.getElementById('myModal');
+            mymodal.style.display = "none";
+        }
+
+
+    </script>
+</head>
+<body>
+<div>
+    <div class="header"><h1>Night of 1000 Jack O' Lanterns</h1></div>
+    <div class="content">
+        <div>
+                <audio controls autoplay>
+                    <source src="audio\audio.mp3" id="bgmusic" type="audio/mp3">
+                </audio>
+        </div>
+
+        <br>
+        <div class="about">
+            <p>More than a 1000 illuminated Jack O' Lanterns were carved by extraordinary artists
+                and put on display at the Governor's Island, New York City. The adventure begun with a Ferry ride
+            from Governor Island Ferry Harbor in Manhattan, offering a lit view of Manhattan skyline , Brooklyn Bridge and Statue
+            of Liberty on its way. The trail on Governor Island was light up with thousands of meticulously hand painted and hand-
+            carved pumpkins. From Disney to Game of Thrones, several major characters were carved intricately with grace.</p>
+        </div>
+        <br>
+         <div class="gallery">
+            <div class="outer">
+                <div class="container">
+                    <img src="images\frog.JPG" alt="lantern img" class="image" id="frog">
+                    <div class="overlay">
+                        <div class="text"> The Princess and the Frog </div>
+                    </div>
+                 </div>
+                <div class="options">
+                    <button class="like" id="like" onclick="colorme('like')"><i class="fa fa-heart"></i></button>
+                    <button class="view" onclick="viewMe('frog')"><i class="fa fa-search-plus" aria-hidden="true"></i> </button>
+                    <div id="myModal" class="modal">
+                        <span class="close" onclick="closeMe()">&times;</span>
+                        <img class="modal-content" id="img01">
+                    </div>
+               </div>
+            </div>
+            <div class="outer">
+                <div class="container">
+                    <img src="images\ariel.jpg" alt="lantern img" class="image" id="ariel">
+                    <div class="overlay">
+                        <div class="text"> Ariel, The Little Mermaid</div>
+                    </div>
+                </div>
+                <div class="options">
+                    <button class="like" id="like1" onclick="colorme('like1')"><i class="fa fa-heart"></i></button>
+                    <button class="view" onclick="viewMe('ariel')"><i class="fa fa-search-plus" aria-hidden="true"></i> </button>
+                </div>
+            </div>
+             <div class="outer">
+                 <div class="container">
+                     <img src="images\snowwhite.jpg" alt="lantern img" class="image" id="snow">
+                     <div class="overlay">
+                         <div class="text"> Snow White and the Seven Dwarfs</div>
+                     </div>
+                 </div>
+                 <div class="options">
+                     <button class="like" id="like2" onclick="colorme('like2')"><i class="fa fa-heart"></i></button>
+                     <button class="view" onclick="viewMe('snow')"><i class="fa fa-search-plus" aria-hidden="true"></i> </button>
+                 </div>
+             </div>
+             <div class="outer">
+                 <div class="container">
+                     <img src="images\mickeyminnie.JPG" alt="lantern img" class="image" id="mickey">
+                     <div class="overlay">
+                         <div class="text"> Mickey Mouse And Minnie Mouse </div>
+                     </div>
+                 </div>
+                 <div class="options">
+                     <button class="like" id="like3" onclick="colorme('like3')"><i class="fa fa-heart"></i></button>
+                     <button class="view" onclick="viewMe('mickey')"><i class="fa fa-search-plus" aria-hidden="true"></i> </button>
+                 </div>
+             </div>
+        <div class="outer">
+            <div class="container">
+                <img src="images\blackpanther.JPG" alt="lantern img" class="image" id="black">
+                <div class="overlay">
+                    <div class="text"> Black Panther</div>
+                </div>
+            </div>
+            <div class="options">
+                <button class="like" id="like4" onclick="colorme('like4')"><i class="fa fa-heart"></i></button>
+                <button class="view" onclick="viewMe('black')"><i class="fa fa-search-plus" aria-hidden="true"></i> </button>
+            </div>
+        </div>
+        <div class="outer">
+            <div class="container">
+                <img src="images\spidey.jpg" alt="lantern img" class="image" id="spidey">
+                <div class="overlay">
+                    <div class="text"> Spider Man</div>
+                </div>
+            </div>
+            <div class="options">
+                <button class="like" id="like5" onclick="colorme('like5')"><i class="fa fa-heart"></i></button>
+                <button class="view" onclick="viewMe('spidey')"><i class="fa fa-search-plus" aria-hidden="true"></i> </button>
+            </div>
+        </div>
+        <div class="outer">
+            <div class="container">
+                <img src="images\superwoman.jpg" alt="lantern img" class="image" id="swoman">
+                <div class="overlay">
+                    <div class="text"> Super Girl</div>
+                </div>
+            </div>
+            <div class="options">
+                <button class="like" id="like6" onclick="colorme('like6')"><i class="fa fa-heart"></i></button>
+                <button class="view" onclick="viewMe('swoman')"><i class="fa fa-search-plus" aria-hidden="true"></i> </button>
+            </div>
+        </div>
+        <div class="outer">
+            <div class="container">
+                <img src="images\bat.JPG" alt="lantern img" class="image" id="bat">
+                <div class="overlay">
+                    <div class="text"> Batman</div>
+                </div>
+            </div>
+            <div class="options">
+                <button class="like" id="like7" onclick="colorme('like7')"><i class="fa fa-heart"></i></button>
+                <button class="view" onclick="viewMe('bat')"><i class="fa fa-search-plus" aria-hidden="true"></i> </button>
+            </div>
+        </div>
+    <div class="outer">
+        <div class="container">
+            <img src="images\tyrion.JPG" alt="lantern img" class="image" id="ty">
+            <div class="overlay">
+                <div class="text"> Tyrion Lannister : Game of Thrones</div>
+            </div>
+        </div>
+        <div class="options">
+            <button class="like" id="like8" onclick="colorme('like8')"><i class="fa fa-heart"></i></button>
+            <button class="view" onclick="viewMe('ty')"><i class="fa fa-search-plus" aria-hidden="true"></i> </button>
+        </div>
+    </div>
+    <div class="outer">
+        <div class="container">
+            <img src="images\arya.jpg" alt="lantern img" class="image" id="arya">
+            <div class="overlay">
+                <div class="text"> Arya Stark</div>
+            </div>
+        </div>
+        <div class="options">
+            <button class="like" id="like9" onclick="colorme('like9')"><i class="fa fa-heart"></i></button>
+            <button class="view" onclick="viewMe('arya')"><i class="fa fa-search-plus" aria-hidden="true"></i> </button>
+        </div>
+    </div>
+    <div class="outer">
+        <div class="container">
+            <img src="images\whitewalker.jpg" alt="lantern img" class="image" id="white">
+            <div class="overlay">
+                <div class="text"> White Walker</div>
+            </div>
+        </div>
+        <div class="options">
+            <button class="like" id="like10" onclick="colorme('like10')"><i class="fa fa-heart"></i></button>
+            <button class="view" onclick="viewMe('white')"><i class="fa fa-search-plus" aria-hidden="true"></i> </button>
+        </div>
+    </div>
+    <div class="outer">
+        <div class="container">
+            <img src="images\dragonqueen.JPG" alt="lantern img" class="image" id="drag">
+            <div class="overlay">
+                <div class="text"> Daenerys Targaryen</div>
+            </div>
+        </div>
+        <div class="options">
+            <button class="like" id="like11" onclick="colorme('like11')"><i class="fa fa-heart"></i></button>
+            <button class="view" onclick="viewMe('drag')"><i class="fa fa-search-plus" aria-hidden="true"></i> </button>
+        </div>
+        <div>
+
+        </div>
+    </div>
+</div>
+</div>
+<br>
+    <div class="footer">
+        Copyright &copy; 2018 by Puneetpal Kaur<br>
+        <a href="https://github.com/puneetpalkaur/Responsive-Web-Page">Fork on GitHub</a>
+    </div>
+
+</div>
+</body>
+</html>
