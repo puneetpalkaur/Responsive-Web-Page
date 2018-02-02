@@ -95,8 +95,10 @@
          .like:hover{
              color:deeppink;
          }
-         .like:active{
+         .like:focus{
+             outline: none;
              color:red;
+
          }
          .view{
              background-color: transparent;
@@ -109,6 +111,12 @@
              text-align: right;
              padding-right: 0;
              margin-right: -28px;
+         }
+         .view:hover{
+             color:red;
+         }
+         .view:focus{
+             outline:none;
          }
          .text {
             color: whitesmoke;
@@ -187,10 +195,9 @@
         }
         audio,source{
             width: 100%;
-            background-color: black;
-            color: red;
             display: none;
         }
+
     </style>
     <script>
         var count = [];
