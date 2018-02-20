@@ -5,6 +5,8 @@
     <title>Jack O' Lanterns</title>
     <link href="https://fonts.googleapis.com/css?family=Butcherman" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <style>
         @keyframes grow {
             0%{text-shadow: 3px 3px red;}
@@ -135,11 +137,14 @@
 
         }
         .gallery{
+
             overflow:auto;
             margin: auto;
             width:100%;
             padding-top: 20px;
             padding-bottom: 20px;
+
+
         }
 
         .options{
@@ -197,7 +202,12 @@
             width: 100%;
             display: none;
         }
-
+        @media (min-width: 1px) and (max-width : 500px){
+            .gallery{
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
     <script>
         var count = [];
